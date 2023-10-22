@@ -1,0 +1,26 @@
+.shimmer-cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.shimmer-card{
+    width: 15rem;
+    height: 20rem;
+    background-color: #f0f0f0;
+    margin: 1rem;
+}
+
+.img-box{
+    width: 12rem;
+    height: 10rem;
+    background-color: #dfdfdf;
+    margin: 1rem auto;
+}
+
+.btn-box{
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+}

@@ -1,0 +1,44 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem 1rem 2rem;
+    border: 2px solid black;
+}
+
+.logo img{
+    width: 40px;
+    height: 40px;
+}
+
+.ul-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item{
+    margin-left: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+li{
+    list-style: none;
+}
+
+.btn{
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius:20px;
+    background-color: #f38520;
+    color: white;
+}
+
+.link{
+    color: #282c3f;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+}

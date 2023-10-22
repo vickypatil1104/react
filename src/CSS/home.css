@@ -1,0 +1,25 @@
+.home{
+    margin: 2rem;
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter{
+    display: flex;
+    margin-top: 2rem;
+}
+
+.input-search{
+    margin-left: 2rem;
+}
+
+.search{
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 2px solid #f38520;
+    outline: none;
+    border-radius: 20px;
+}
