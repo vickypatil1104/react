@@ -1,5 +1,4 @@
 import React from "react";
-import "../CSS/shimmer.css";
 
 function Shimmer() {
   return (

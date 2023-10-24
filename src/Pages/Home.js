@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/Card";
-import "../CSS/home.css";
+import Card, { VegRestaurant } from "../components/Card";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
@@ -26,19 +25,22 @@ function Home() {
     setListOfRestaurant(restList);
     setFilterRestaurant(restList);
   };
+  console.log("filterRestaurant", filterRestaurant);
+
+  const VegRestaurantCard = VegRestaurant(Card);
   return (
     <>
       {listOfRestaurant.length === 0 ? (
         <Shimmer />
       ) : (
         <div className="home">
-          <div className="heading">
+          <div className="m-10 text-xl">
             <h1>Top restaurant in Mumbai</h1>
           </div>
           <div className="Home-container">
-            <div className="filter">
+            <div className="flex items-center">
               <button
-                className="btn"
+                className="m-4 px-4 py-3 bg-orange-300"
                 onClick={() => {
                   const data = listOfRestaurant.filter((filterRestaurant) => {
                     return filterRestaurant.info.avgRatingString > "4";
@@ -51,14 +53,15 @@ function Home() {
               <div className="input-search">
                 <input
                   type="text"
-                  className="search"
+                  placeholder="search"
+                  className="border border-solid outline-none p-2 mx-4"
                   value={search}
                   onChange={(e) => {
                     setSearch(e.target.value);
                   }}
                 />
                 <button
-                  className="btn"
+                  className="px-4 py-2 m-3 bg-orange-300 rounded-lg"
                   onClick={() => {
                     const data = listOfRestaurant.filter((rest) => {
                       return rest.info.name
@@ -72,18 +75,29 @@ function Home() {
                 </button>
               </div>
             </div>
-            <div className="card-container">
+            <div className="flex flex-wrap">
               {filterRestaurant.map((data) => {
                 return (
                   <Link to={"restaurant/" + data.info.id} target="_black">
-                    <Card
-                      key={data.info.id}
-                      imgId={data.info.cloudinaryImageId}
-                      restName={data.info.name}
-                      cuisines={data.info.cuisines}
-                      rating={data.info.avgRating}
-                      cost={data.info.costForTwo}
-                    />
+                    {data.info.veg ? (
+                      <VegRestaurantCard
+                        key={data.info.id}
+                        imgId={data.info.cloudinaryImageId}
+                        restName={data.info.name}
+                        cuisines={data.info.cuisines}
+                        rating={data.info.avgRating}
+                        cost={data.info.costForTwo}
+                      />
+                    ) : (
+                      <Card
+                        key={data.info.id}
+                        imgId={data.info.cloudinaryImageId}
+                        restName={data.info.name}
+                        cuisines={data.info.cuisines}
+                        rating={data.info.avgRating}
+                        cost={data.info.costForTwo}
+                      />
+                    )}
                   </Link>
                 );
               })}

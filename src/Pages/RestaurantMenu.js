@@ -1,32 +1,10 @@
-import { useEffect, useState } from "react";
-import "../CSS/restaurantMenu.css";
 import { useParams } from "react-router-dom";
-import { RESTAURANT_MENU } from "../Api";
+import useRestaurantMenu from "../Hooks/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [menuData, setMenuData] = useState([]);
-  const [restMenu, setRestMenu] = useState([]);
-  const [offer, setoffer] = useState([]);
-
   const { menuId } = useParams();
-  console.log("restID", menuId);
-  useEffect(() => {
-    fetchMenu();
-  }, []);
 
-  const fetchMenu = async () => {
-    const data = await fetch(RESTAURANT_MENU + menuId);
-    const jsonData = await data.json();
-    const menuData = jsonData?.data?.cards[0]?.card?.card?.info;
-    const offerData =
-      jsonData?.data?.cards[1]?.card?.card?.gridElements.infoWithStyle.offers;
-    const restMenuData =
-      jsonData?.data?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards[2].card
-        .card.itemCards;
-    setRestMenu(restMenuData);
-    setMenuData(menuData);
-    setoffer(offerData);
-  };
+  const { menuData, offer, restMenu } = useRestaurantMenu(menuId);
 
   const { name, cuisines, locality, avgRatingString, costForTwoMessage } =
     menuData;
@@ -57,7 +35,7 @@ const RestaurantMenu = () => {
             <h3 className="time">{time}min</h3>
             <h3 className="for-two">{costForTwoMessage}</h3>
           </div>
-          <div className="offer-container">
+          <div className="flex">
             {offer.map((off, index) => {
               const offHeading = off.info.header;
               const couponCode = off.info.couponCode;

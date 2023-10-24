@@ -1,5 +1,4 @@
 import Navbar from "./components/Navbar";
-import "./CSS/index.css";
 import { Outlet } from "react-router-dom";
 
 function App() {
