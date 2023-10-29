@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import RestaurantMenu from "./Pages/RestaurantMenu";
 import "../src/index.css";
+import ItemCard from "./Pages/ItemCard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/restaurant/:menuId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/card",
+        element: <ItemCard />,
       },
     ],
     errorElement: <Error />,

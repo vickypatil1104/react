@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RESTAURANT_MENU } from "../Api";
+import { RESTAURANT_MENU } from "../Utils/Api";
 
 const useRestaurantMenu = (menuId) => {
   const [menuData, setMenuData] = useState([]);
@@ -16,9 +16,14 @@ const useRestaurantMenu = (menuId) => {
     const offerData =
       jsonData?.data?.cards[1]?.card?.card?.gridElements.infoWithStyle.offers;
     const restMenuData =
-      jsonData?.data?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards[2].card
-        .card.itemCards;
-    setRestMenu(restMenuData);
+      jsonData?.data?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
+    const restMenuCategory = restMenuData.filter((c) => {
+      return (
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+    });
+    setRestMenu(restMenuCategory);
     setMenuData(menuData);
     setOffer(offerData);
   };
